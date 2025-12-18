@@ -1,7 +1,7 @@
 package com.example.demo.repository;
-import com.example.demo.entity.RecoveryCurveProfile;
+import com.example.demo.entity.DailySymptomLog;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
-public interface RecoveryCurveRepository extends JpaRepository<RecoveryCurveProfile,Long>{
-    List<RecoveryCurveProfile>findBySurgeryType(String surgeryType);
+public interface DailySymptomLogRepository extends JpaRepository<DailySymptomLog,Long>{
+    List<DailySymptomLog>findByPatientId(Long patientId);
 }
