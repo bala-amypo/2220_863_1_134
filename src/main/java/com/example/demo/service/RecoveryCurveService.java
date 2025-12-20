@@ -2,7 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.entity.RecoveryCurveProfile;
 import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.repository.RecoveryCurveProfileRepository;
+import com.example.demo.repository.RecoveryCurveRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class RecoveryCurveService {
 
-    private final RecoveryCurveProfileRepository recoveryCurveProfileRepository;
+    private final RecoveryCurveRepository recoveryCurveRepository;
 
     public RecoveryCurveService(RecoveryCurveProfileRepository recoveryCurveProfileRepository) {
         this.recoveryCurveProfileRepository = recoveryCurveProfileRepository;
