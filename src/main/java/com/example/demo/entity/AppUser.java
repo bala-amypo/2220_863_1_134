@@ -1,7 +1,7 @@
 package com.example.demo.entity;
 import jakarta.persistence.*;
 import lombok.*;
-@Emtity
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
@@ -9,7 +9,7 @@ import lombok.*;
 @Builder
 public class AppUser{
     @Id
-    @GeneratedValue(startgey=GenerationType.IDENTITY)
+    @GeneratedValue(startegy=GenerationType.IDENTITY)
     private Long id;
     @Column(unique=true)
     private String email;
