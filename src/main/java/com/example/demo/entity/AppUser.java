@@ -9,7 +9,7 @@ import lombok.*;
 @Builder
 public class AppUser{
     @Id
-    @GeneratedValue(startegy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique=true)
     private String email;
