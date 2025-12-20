@@ -17,8 +17,8 @@ public class ClinicalAlertService {
 
 
     public ClinicalAlertService(ClinicalAlertRepository clinicalAlertRepository,
-    )
-    PatientProfileRepository patientProfileRepository{
+    
+    PatientProfileRepository patientProfileRepository){
 
         this.clinicalAlertRepository = clinicalAlertRepository;
 
