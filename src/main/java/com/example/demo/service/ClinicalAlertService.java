@@ -1,32 +1,14 @@
 package com.example.demo.service;
-
-
-
 import com.example.demo.entity.ClinicalAlert;
-
 import com.example.demo.entity.PatientProfile;
-
 import com.example.demo.exception.ResourceNotFoundException;
-
 import com.example.demo.repository.ClinicalAlertRepository;
-
 import com.example.demo.repository.PatientProfileRepository;
-
 import org.springframework.stereotype.Service;
-
-
-
 import java.time.LocalDate;
-
 import java.util.List;
-
-
-
 @Service
-
 public class ClinicalAlertService {
-
-
 
     private final ClinicalAlertRepository clinicalAlertRepository;
 
@@ -36,7 +18,7 @@ public class ClinicalAlertService {
 
     public ClinicalAlertService(ClinicalAlertRepository clinicalAlertRepository,
     )
-    PatientProfileRepository patientProfileRepository) {
+    PatientProfileRepository patientProfileRepository{
 
         this.clinicalAlertRepository = clinicalAlertRepository;
 
