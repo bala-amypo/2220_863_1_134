@@ -34,7 +34,7 @@ public class PatientProfileService {
 
         .orElseThrow(() ->
         )
-        new ResourceNotFoundException("Patient not found"));
+        new ResourceNotFoundException("Patient not found");
 
     }
     public PatientProfile getPatientByPatientId(String patientId) {
