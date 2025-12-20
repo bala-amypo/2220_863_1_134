@@ -12,8 +12,8 @@ public class RecoveryCurveService {
 
     private final RecoveryCurveRepository recoveryCurveRepository;
 
-    public RecoveryCurveService(RecoveryCurveProfileRepository recoveryCurveProfileRepository) {
-        this.recoveryCurveProfileRepository = recoveryCurveProfileRepository;
+    public RecoveryCurveService(RecoveryCurveRepository recoveryCurveRepository) {
+        this.recoveryCurveRepository = recoveryCurveRepository;
     }
 
     // Create Recovery Curve
@@ -26,14 +26,14 @@ public class RecoveryCurveService {
             throw new IllegalArgumentException("Threshold must be non-negative");
         }
 
-        return recoveryCurveProfileRepository.save(profile);
+        return recoveryCurveRepository.save(profile);
     }
 
     // Get Recovery Curves by Surgery Type
     public List<RecoveryCurveProfile> getRecoveryCurvesBySurgeryType(String surgeryType) {
 
         List<RecoveryCurveProfile> curves =
-                recoveryCurveProfileRepository.findBySurgeryType(surgeryType);
+                recoveryCurveRepository.findBySurgeryType(surgeryType);
 
         if (curves.isEmpty()) {
             throw new ResourceNotFoundException("Recovery curve not found");
