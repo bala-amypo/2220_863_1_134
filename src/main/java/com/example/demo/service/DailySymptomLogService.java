@@ -1,21 +1,12 @@
 package com.example.demo.service;
-
 import com.example.demo.entity.DailySymptomLog;
-
 import com.example.demo.entity.PatientProfile;
-
 import com.example.demo.exception.ResourceNotFoundException;
-
 import com.example.demo.repository.DailySymptomLogRepository;
-
 import com.example.demo.repoesitory.PatientProfileRepository;
-
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
-
 import java.time.LocalDateTime;
-
 import java.util.List;
 
 @Service
@@ -35,9 +26,6 @@ public class DailySymptomLogService {
         this.patientProfileRepository = patientProfileRepository;
 
     }
-
-    / /Create Daily Symptom Log
-
     public DailySymptomLog createDailyLog(Long patientId, DailySymptomLog log) {
 
         if (log.getLogDate().isAfter(LocalDate.now())) {
@@ -60,8 +48,6 @@ public class DailySymptomLogService {
 
             }
 
-            // Get Logs by Patient ID
-
             public List<DailySymptomLog> getLogsByPatientId(Long patientId) {
 
                 if (!patientProfileRepository.existsById(patientId)) {
@@ -74,10 +60,4 @@ public class DailySymptomLogService {
 
                     }
 
-}
-                }
-            }
-        }
-    }
-    }
 }
