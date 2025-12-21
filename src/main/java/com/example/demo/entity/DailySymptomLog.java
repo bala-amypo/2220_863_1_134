@@ -1,6 +1,8 @@
 package com.example.demo.entity;
+
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -10,18 +12,19 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
 public class DailySymptomLog {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne
     @JoinColumn(name = "patient_id")
     private PatientProfile patient;
+
     private LocalDate logDate;
-    private Integer painLevel;
-    private Integer mobilityLevel;
-    private Integer fatigueLevel;
-    private String notes;
+
     private LocalDateTime submittedAt;
+
+    private Integer painLevel;
 }

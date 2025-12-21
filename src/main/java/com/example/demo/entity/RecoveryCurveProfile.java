@@ -1,4 +1,5 @@
 package com.example.demo.entity;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,13 +10,14 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class RecoveryCurveProfile {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String surgeryType;
-    private Integer dayNumber;
-    private Integer expectedPainLevel;
-    private Integer expectedMobilityLevel;
-    private Integer expectedFatigueLevel;
 
+    private Integer expectedPainLevel;
+
+    private Integer expectedMobilityLevel;
+
+    private Integer expectedFatigueLevel;
 }
