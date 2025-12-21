@@ -14,7 +14,8 @@ public class RecoveryCurveProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
+    private String surgeryType;
     private Integer expectedPainLevel;
 
     private Integer expectedMobilityLevel;
