@@ -1,6 +1,8 @@
 package com.example.demo.entity;
+
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -10,16 +12,16 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class PatientProfile {
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-            private Long id;
-        @Column(unique = true)
-            private String patientId;
-            private String fullName;
-            private Integer age;
-        @Column(unique = true)
-            private String email;
-            private String surgeryType;
-            private Boolean active;
-            private LocalDateTime createdAt;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String patientId;
+
+    private String email;
+
+    private boolean active;
+
+    private LocalDateTime createdAt;
 }
