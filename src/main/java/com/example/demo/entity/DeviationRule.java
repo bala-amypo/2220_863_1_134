@@ -14,7 +14,7 @@ public class DeviationRule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    private String surgeryType;
     private Integer thresholdDeviation;
 
     private boolean active;
