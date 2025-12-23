@@ -1,31 +1,31 @@
-package com.example.demo.security;
+// package com.example.demo.security;
 
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+// import io.jsonwebtoken.Jwts;
+// import io.jsonwebtoken.SignatureAlgorithm;
 
-import java.util.Date;
+// import java.util.Date;
 
-public class JwtTokenProvider {
+// public class JwtTokenProvider {
 
-    private final String secret;
-    private final long validityInMs;
+//     private final String secret;
+//     private final long validityInMs;
 
-    public JwtTokenProvider(String secret, long validityInMs) {
-        this.secret = secret;
-        this.validityInMs = validityInMs;
-    }
+//     public JwtTokenProvider(String secret, long validityInMs) {
+//         this.secret = secret;
+//         this.validityInMs = validityInMs;
+//     }
 
-    public String createToken(String email, String role) {
+//     public String createToken(String email, String role) {
 
-        Date now = new Date();
-        Date expiry = new Date(now.getTime() + validityInMs);
+//         Date now = new Date();
+//         Date expiry = new Date(now.getTime() + validityInMs);
 
-        return Jwts.builder()
-                .setSubject(email)
-                .claim("role", role)
-                .setIssuedAt(now)
-                .setExpiration(expiry)
-                .signWith(SignatureAlgorithm.HS256, secret)
-                .compact();
-    }
-}
+//         return Jwts.builder()
+//                 .setSubject(email)
+//                 .claim("role", role)
+//                 .setIssuedAt(now)
+//                 .setExpiration(expiry)
+//                 .signWith(SignatureAlgorithm.HS256, secret)
+//                 .compact();
+//     }
+// }
