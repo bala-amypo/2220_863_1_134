@@ -1,47 +1,14 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.ClinicalAlert;
-import com.example.demo.entity.PatientProfile;
-import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.repository.ClinicalAlertRepository;
-import com.example.demo.repository.PatientProfileRepository;
-import org.springframework.stereotype.Service;
+import com.example.demo.model.ClinicalAlertRecord;
 
-import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
-@Service
-public class ClinicalAlertService {
-
-    private final ClinicalAlertRepository clinicalAlertRepository;
-    private final PatientProfileRepository patientProfileRepository;
-
-    public ClinicalAlertService(
-            ClinicalAlertRepository clinicalAlertRepository,
-            PatientProfileRepository patientProfileRepository) {
-        this.clinicalAlertRepository = clinicalAlertRepository;
-        this.patientProfileRepository = patientProfileRepository;
-    }
-
-    public ClinicalAlert createAlert(Long patientId, ClinicalAlert alert) {
-
-        PatientProfile patient = patientProfileRepository.findById(patientId)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException("Patient not found"));
-
-        alert.setPatient(patient);
-        alert.setAlertDate(LocalDate.now());
-        alert.setResolved(false);
-
-        return clinicalAlertRepository.save(alert);
-    }
-
-    public List<ClinicalAlert> getAlertsByPatientId(Long patientId) {
-
-        if (!patientProfileRepository.existsById(patientId)) {
-            throw new ResourceNotFoundException("Patient not found");
-        }
-
-        return clinicalAlertRepository.findByPatientId(patientId);
-    }
+public interface ClinicalAlertService {
+    ClinicalAlertRecord createAlert(ClinicalAlertRecord alert);
+    ClinicalAlertRecord resolveAlert(Long alertId);
+    List<ClinicalAlertRecord> getAlertsByPatient(Long patientId);
+    List<ClinicalAlertRecord> getAllAlerts();
+    Optional<ClinicalAlertRecord> getAlertById(Long id);
 }
