@@ -1,31 +1,55 @@
-// package com.example.demo.security;
+package com.example.demo.security;
 
-// import io.jsonwebtoken.Jwts;
-// import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 
-// import java.util.Date;
+import java.util.Date;
 
-// public class JwtTokenProvider {
+public class JwtTokenProvider {
 
-//     private final String secret;
-//     private final long validityInMs;
+    private final String secretKey;
+    private final long validityInMilliseconds;
 
-//     public JwtTokenProvider(String secret, long validityInMs) {
-//         this.secret = secret;
-//         this.validityInMs = validityInMs;
-//     }
+    // REQUIRED constructor (tests expect this)
+    public JwtTokenProvider(String secret, long validityInMs) {
+        this.secretKey = secret;
+        this.validityInMilliseconds = validityInMs;
+    }
 
-//     public String createToken(String email, String role) {
+    // Create JWT Token
+    public String createToken(String email, String role) {
 
-//         Date now = new Date();
-//         Date expiry = new Date(now.getTime() + validityInMs);
+        Claims claims = Jwts.claims().setSubject(email);
+        claims.put("role", role);
 
-//         return Jwts.builder()
-//                 .setSubject(email)
-//                 .claim("role", role)
-//                 .setIssuedAt(now)
-//                 .setExpiration(expiry)
-//                 .signWith(SignatureAlgorithm.HS256, secret)
-//                 .compact();
-//     }
-// }
+        Date now = new Date();
+        Date validity = new Date(now.getTime() + validityInMilliseconds);
+
+        return Jwts.builder()
+                .setClaims(claims)
+                .setIssuedAt(now)
+                .setExpiration(validity)
+                .signWith(SignatureAlgorithm.HS256, secretKey)
+                .compact();
+    }
+
+    // Get email from token
+    public String getEmail(String token) {
+        return Jwts.parser()
+                .setSigningKey(secretKey)
+                .parseClaimsJws(token)
+                .getBody()
+                .getSubject();
+    }
+
+    // Validate token
+    public boolean validateToken(String token) {
+        try {
+            Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+}
