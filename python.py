@@ -1,5 +1,4 @@
-#!/usr/bin/env python3
-
+#!/usr/bin/env python
 import os
 import shutil
 import time
@@ -7,7 +6,6 @@ import time
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SOURCE_DIR = os.path.join(BASE_DIR, "src", "test")
 DEST_DIR = "/home/coder/Workspace/test_saved"
-
 while True:
     if os.path.isdir(SOURCE_DIR):
         try:
