@@ -1,13 +1,17 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.PatientProfile;
+import com.example.demo.model.PatientProfile;
 import com.example.demo.service.PatientProfileService;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/patients")
+@Tag(name = "Patients")
 public class PatientProfileController {
 
     private final PatientProfileService patientProfileService;
@@ -17,22 +21,27 @@ public class PatientProfileController {
     }
 
     @PostMapping
-    public PatientProfile createPatient(@RequestBody PatientProfile patientProfile) {
-        return patientProfileService.createPatient(patientProfile);
-    }
-
-    @GetMapping
-    public List<PatientProfile> getAllPatients() {
-        return patientProfileService.getAllPatients();
+    public ResponseEntity<PatientProfile> create(@RequestBody PatientProfile profile) {
+        return ResponseEntity.ok(patientProfileService.createPatient(profile));
     }
 
     @GetMapping("/{id}")
-    public PatientProfile getPatientById(@PathVariable Long id) {
-        return patientProfileService.getPatientById(id);
+    public ResponseEntity<PatientProfile> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(patientProfileService.getPatientById(id));
     }
 
-    @GetMapping("/patient-id/{patientId}")
-    public PatientProfile getPatientByPatientId(@PathVariable String patientId) {
-        return patientProfileService.getPatientByPatientId(patientId);
+    @GetMapping
+    public ResponseEntity<List<PatientProfile>> getAll() {
+        return ResponseEntity.ok(patientProfileService.getAllPatients());
+    }
+
+    @PutMapping("/{id}/status")
+    public ResponseEntity<PatientProfile> updateStatus(@PathVariable Long id, @RequestParam boolean active) {
+        return ResponseEntity.ok(patientProfileService.updatePatientStatus(id, active));
+    }
+
+    @GetMapping("/lookup/{patientId}")
+    public ResponseEntity<Optional<PatientProfile>> findByPatientId(@PathVariable String patientId) {
+        return ResponseEntity.ok(patientProfileService.findByPatientId(patientId));
     }
 }

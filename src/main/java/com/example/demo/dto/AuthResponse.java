@@ -1,10 +1,18 @@
 package com.example.demo.dto;
 
+import com.example.demo.model.UserRole;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
+@Data
+@NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class AuthResponse {
     private String token;
+    private String email;
+    private UserRole role;
+    private Long userId;
 }
