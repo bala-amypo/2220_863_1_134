@@ -8,7 +8,9 @@ import io.jsonwebtoken.security.Keys;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
+import org.springframework.stereotype.Component;
 
+@Component
 public class JwtTokenProvider {
 
     private final SecretKey secretKey;
